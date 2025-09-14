@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Fruitopia</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Resize window to 80% of screen size on load
+      window.addEventListener('load', function() {
+        // Get screen dimensions
+        const screenWidth = window.screen.availWidth;
+        const screenHeight = window.screen.availHeight;
+        
+        // Calculate 80% dimensions
+        const newWidth = Math.floor(screenWidth * 0.8);
+        const newHeight = Math.floor(screenHeight * 0.8);
+        
+        // Center the window
+        const left = Math.floor((screenWidth - newWidth) / 2);
+        const top = Math.floor((screenHeight - newHeight) / 2);
+        
+        // Resize and reposition the window
+        window.resizeTo(newWidth, newHeight);
+        window.moveTo(left, top);
+      });
+    </script>
   </body>
 </html>
