@@ -3,6 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div 
+      id="home"
       className="min-h-screen bg-cover bg-no-repeat relative flex items-center justify-center pt-24 px-4"
       style={{
         backgroundImage: 'url(/assets/Images/bgg.png)',

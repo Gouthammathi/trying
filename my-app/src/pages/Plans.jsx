@@ -3,6 +3,7 @@ import React from 'react'
 const Plans = () => {
   return (
     <div 
+      id="plans"
       className="relative min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center pt-24 px-4 overflow-hidden"
       style={{
         backgroundImage: 'url(/assets/Images/sky.png)',
