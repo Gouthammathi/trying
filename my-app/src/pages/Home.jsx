@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div 
-      className="min-h-screen bg-cover bg-no-repeat relative flex items-center justify-center pt-24"
+      className="min-h-screen bg-cover bg-no-repeat relative flex items-center justify-center pt-24 px-4"
       style={{
         backgroundImage: 'url(/assets/Images/bgg.png)',
         backgroundSize: 'cover',
@@ -37,8 +37,8 @@ const Home = () => {
             WebkitTextStroke: '0px #000'
           }}
         >
-          <div className="text-3xl font-bold leading-tight">Welcome to</div>
-          <div className="text-8xl font-bold leading-tight">Fruitopia</div>
+          <div className="text-2xl sm:text-3xl font-bold leading-tight">Welcome to</div>
+          <div className="text-5xl sm:text-7xl md:text-8xl font-bold leading-tight">Fruitopia</div>
         </div>
       </div>
     </div>
