@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 const Header = () => {
   const headerRef = useRef(null)
   const [translateY, setTranslateY] = useState(0)
-  const suppressUntilRef = useRef(0)
 
   useEffect(() => {
     let lastY = window.scrollY
@@ -11,7 +10,6 @@ const Header = () => {
     const getHeight = () => (headerRef.current ? headerRef.current.offsetHeight : 80)
 
     const onScroll = () => {
-      if (Date.now() < suppressUntilRef.current) return
       const currentY = window.scrollY
       const delta = currentY - lastY
       lastY = currentY
@@ -41,20 +39,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNavClick = (id) => {
-    const target = document.getElementById(id)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-    // Show header, then hide after 3s
-    const getHeight = () => (headerRef.current ? headerRef.current.offsetHeight : 80)
-    setTranslateY(0)
-    suppressUntilRef.current = Date.now() + 3200
-    setTimeout(() => {
-      setTranslateY(getHeight())
-    }, 3000)
-  }
-
   return (
     <header
       ref={headerRef}
@@ -82,7 +66,7 @@ const Header = () => {
             FRUITOPIA
           </span>
         </a>
-        <nav aria-label="Primary" className="flex items-center gap-2 sm:gap-4 md:gap-6">
+        <nav aria-label="Primary" className="hidden sm:flex items-center gap-2 sm:gap-4 md:gap-6">
           {[
             { id: 'home', label: 'Home' },
             { id: 'plans', label: 'Plans' },
@@ -91,8 +75,14 @@ const Header = () => {
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={(e) => { e.preventDefault(); handleNavClick(item.id) }}
-              className="px-2.5 py-1 sm:px-4 sm:py-2 rounded-full text-white hover:text-yellow-300 text-xs sm:text-base font-semibold transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                const target = document.getElementById(item.id)
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-white hover:text-yellow-300 text-sm sm:text-base font-semibold transition-colors"
               style={{ fontFamily: 'Supercell-Magic, cursive' }}
             >
               {item.label}
